@@ -17,6 +17,13 @@ Project Motivation
 Embedded devices frequently collect data from sensors and provide that data over a network. This project provides a simplified implementation of such a system while demonstrating the core technologies used in embedded Linux products.
 
 ---
+# Related Documents
+
+- project-proposal.md
+- architecture.md
+- sprint-plan.md
+- schedule.md
+
 
 System Architecture
 +----------------------+
@@ -133,3 +140,36 @@ Roles:
 Schedule
 See the Schedule page for sprint planning and project tracking.
 
+# Documentation
+
+The following documents provide additional project details:
+
+- project-proposal.md
+- architecture.md
+- sprint-plan.md
+- schedule.md
+
+---
+
+# Team Members
+
+## Patrice Renee Emery
+
+### Roles
+
+- Architecture
+- Development
+- Testing
+- Documentation
+- Deployment
+
+---
+
+# Current Status
+
+The project is currently in Sprint 1.
+
+Refer to the following documents for implementation details and project tracking:
+
+- sprint-plan.md
+- schedule.md
