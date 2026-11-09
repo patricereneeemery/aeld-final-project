@@ -1,4 +1,15 @@
 # AELD Final Project
+# AELD Final Project
+
+## Raspberry Pi Environmental Monitoring Service
+
+### Project Documentation
+
+- docs/project-overview.md
+- docs/project-proposal.md
+- docs/architecture.md
+- docs/sprint-plan.md
+- docs/schedule.md
 
 ## Overview
 
