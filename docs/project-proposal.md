@@ -1,54 +1,172 @@
 # Project Proposal
 
-## Project Title
+## Project Name
 
-Raspberry Pi Environmental Monitoring Service
+### Raspberry Pi Monitoring and Control Service
 
-## Problem Statement
+---
 
-Embedded systems frequently need to collect environmental data and make it available over a network. This project demonstrates the design and implementation of an embedded Linux application capable of gathering sensor data and serving that information to remote clients.
+## Objective
 
-## Project Objectives
+Develop a network-accessible monitoring and control service running on a Raspberry Pi 4 using a custom Yocto-generated Linux image.
 
-The objectives of this project are:
+The project will demonstrate integration of networking, multithreading, GPIO hardware interfaces, embedded Linux deployment, and automated service management within a single embedded Linux platform.
 
-- Develop an embedded Linux application running on Raspberry Pi 4
-- Implement a TCP/IP server
-- Collect and manage monitoring data
-- Support multithreaded client handling
+---
+
+## Background
+
+Embedded Linux devices commonly monitor hardware status and communicate information across a network while interacting with locally attached hardware.
+
+The goal of this project is to implement a lightweight monitoring and control framework demonstrating core embedded Linux concepts using a Raspberry Pi 4.
+
+---
+
+## Project Goals
+
+The project will:
+
+- Build a custom Yocto Linux image
+- Deploy software to Raspberry Pi 4 hardware
+- Provide TCP-based network communication
+- Implement GPIO output control
+- Implement GPIO input monitoring
+- Collect and report system statistics
 - Integrate with systemd
-- Package the solution using Yocto
-- Demonstrate embedded Linux development practices
+- Reuse concepts developed during AELD coursework
 
-## Scope
+---
 
-### Included
+## Hardware
 
-- Raspberry Pi 4 deployment
-- Network server
-- Client application
-- Logging
-- Systemd integration
-- Yocto image customization
-- Automated startup
+### Primary Hardware
 
-### Excluded
+- Raspberry Pi 4 Model B
 
-- Cloud integration
-- Mobile applications
-- Database systems
-- Large-scale distributed deployment
+### Peripheral Hardware
 
-## Expected Deliverables
+- Breadboard
+- LEDs
+- Push Button
+- Resistors
+- Jumper Wires
 
-- Source code repository
-- TCP server application
-- Client application
-- Systemd service files
-- Yocto layer/recipe integration
-- Project documentation
-- Final demonstration
+All hardware will be supplied by the project author.
 
-## Estimated Effort
+---
 
-The project is expected to require approximately 30-45 hours of implementation effort distributed across three development sprints.
+## Software Components
+
+### aesd-monitor
+
+Primary application providing:
+
+- TCP server implementation
+- Command processing
+- GPIO monitoring
+- GPIO control
+- System status reporting
+
+### Monitoring Subsystem
+
+Collects:
+
+- CPU utilization
+- Memory utilization
+- System uptime
+
+### GPIO Subsystem
+
+Provides:
+
+- LED output control
+- Push-button status monitoring
+
+### systemd Integration
+
+Provides:
+
+- Automatic startup
+- Restart capability
+- Service management
+
+### Yocto Integration
+
+Provides:
+
+- Application packaging
+- Image creation
+- Embedded deployment
+
+---
+
+## Connection to Previous Coursework
+
+### Assignment 5
+
+- TCP socket programming
+- Client/server communication
+
+### Assignment 6
+
+- Threading
+- Synchronization
+
+### Assignment 7
+
+- System service integration
+
+### Assignment 8
+
+- Embedded Linux build systems
+- Cross compilation
+
+### Assignment 9
+
+- Device driver concepts
+- Kernel and userspace interfaces
+
+---
+
+## Expected Deliverable
+
+A bootable Raspberry Pi image capable of:
+
+- Running the monitoring service
+- Reporting system status
+- Monitoring GPIO inputs
+- Controlling GPIO outputs
+- Accepting remote TCP client connections
+- Starting automatically during boot
+
+---
+
+## Success Criteria
+
+The project will be considered complete when:
+
+- The Raspberry Pi boots a custom Yocto image
+- The monitoring service starts automatically through systemd
+- A network client can connect to the service
+- GPIO hardware can be monitored and controlled
+- System status information can be retrieved remotely
+- The project can be demonstrated on physical hardware
+
+---
+
+## Planned Repository Organization
+
+```text
+aeld-final-project/
+|
+├── docs
+├── applications
+│   └── aesd-monitor
+├── yocto
+├── systemd
+├── scripts
+├── tests
+└── README.md
+```
+
+All project artifacts, source code, documentation, and deployment files will be maintained within a single repository.
