@@ -28,6 +28,12 @@ Final project for CU Boulder ECEN-AESD.
 - tests/       Test code
 - docs/        Project documentation
 
+# AELD Final Project Overview 
+
+Project Overview:
+
+https://github.com/patricereneeemery/aeld-final-project/wiki/Project-Overview
+
 ## Build
 
 TBD
