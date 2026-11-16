@@ -1,38 +1,57 @@
 # AELD Final Project
-# AELD Final Project
 
-## Raspberry Pi Environmental Monitoring Service
+## Raspberry Pi Monitoring and Control Service
 
-### Project Documentation
+This repository contains the individual submission for the Advanced Embedded Linux Development (AELD) Final Project.
 
-- docs/project-overview.md
-- docs/project-proposal.md
-- docs/architecture.md
-- docs/sprint-plan.md
-- docs/schedule.md
+## Project Overview
 
-## Overview
+Project documentation and planning information are available in the GitHub Wiki:
 
-Final project for CU Boulder ECEN-AESD.
+https://github.com/patricereneeemery/aeld-final-project/wiki/Project-Overview
 
-## Team Members
+## Documentation
 
-- Patrice Emery
+Project documentation is maintained in the `docs` directory.
+
+- `docs/project-overview.md`
+- `docs/project-proposal.md`
+- `docs/architecture.md`
+- `docs/sprint-plan.md`
+- `docs/schedule.md`
 
 ## Repository Structure
 
-- server/      Server application
-- client/      Client application
-- scripts/     Build and deployment scripts
-- systemd/     Service definitions
-- tests/       Test code
-- docs/        Project documentation
+```text
+aeld-final-project/
+|
+├── .github/workflows
+├── docs
+├── applications
+│   └── aesd-monitor
+├── yocto
+├── systemd
+├── scripts
+├── tests
+└── README.md
+```
 
-# AELD Final Project Overview 
+## Hardware Platform
 
-Project Overview:
+- Raspberry Pi 4 Model B
+- LED
+- Push Button
+- Breadboard
+- Resistors
+- Jumper Wires
 
-https://github.com/patricereneeemery/aeld-final-project/wiki/Project-Overview
+## Current Status
+
+Sprint 1 - Planning and Platform Bring-Up
+
+## Student
+
+Patrice Renee Emery
 
 ## Build
 
