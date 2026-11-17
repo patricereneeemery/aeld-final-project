@@ -35,6 +35,24 @@ aeld-final-project/
 ├── tests
 └── README.md
 ```
+## Project Roadmap
+
+```mermaid
+timeline
+    title AELD Final Project
+
+    Sprint 1 : Documentation
+             : Raspberry Pi Bring-Up
+
+    Sprint 2 : TCP Server
+             : Command Parsing
+
+    Sprint 3 : GPIO Integration
+             : Hardware Testing
+
+    Sprint 4 : Yocto Packaging
+             : Final Demonstration
+
 
 ## Hardware Platform
 
