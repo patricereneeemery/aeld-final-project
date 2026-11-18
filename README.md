@@ -9,6 +9,28 @@ This repository contains the individual submission for the Advanced Embedded Lin
 Project documentation and planning information are available in the GitHub Wiki:
 
 https://github.com/patricereneeemery/aeld-final-project/wiki/Project-Overview
+## Source Code Organization
+
+### Build System Repository
+
+Build system and application development repository:
+
+https://github.com/patricereneeemery/aeld-final-project
+
+This repository contains:
+
+- Yocto integration
+- Application source code
+- Documentation
+- Sprint planning
+- Service definitions
+- Testing artifacts
+
+### Additional Repositories
+
+No additional repositories are currently planned.
+
+All project source code, build system configuration, documentation, and deployment artifacts will be maintained in a single repository.
 
 ## Documentation
 
