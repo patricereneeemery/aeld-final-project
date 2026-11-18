@@ -2,13 +2,13 @@
 
 ## Project Overview
 
-The project is divided into four phases corresponding to the course schedule.
+The project is divided into a planning phase followed by three implementation sprints corresponding to the course schedule.
 
 ---
 
-## Sprint 1 - Planning and Platform Bring-Up
+# Planning Phase
 
-### Objectives
+## Objectives
 
 - Create project repository
 - Create project documentation
@@ -19,104 +19,139 @@ The project is divided into four phases corresponding to the course schedule.
 - Verify SSH access
 - Define project architecture
 
-### Issues
+## Completed Issues
 
 | Issue | Description | Status |
 |---------|---------|---------|
 | #1 | Repository Setup and Documentation | Complete |
 | #2 | Raspberry Pi Platform Bring-Up | Complete |
-| #3 | TCP Server Prototype | In Progress |
 
-### Definition of Done
+## Definition of Done Verification
 
-Sprint 1 is complete when:
+### Issue #1
 
-- Project Overview page is complete
-- Schedule page is complete
-- Repository structure exists
-- Raspberry Pi boots successfully
-- SSH access has been verified
-- Sprint issues have been created
-- Project architecture has been defined
+Definition of Done verified.
+
+Completed:
+
+- Repository created
+- README created
+- Project Overview page created
+- Schedule page created
+- Repository structure defined
+- Project documentation committed
+
+### Issue #2
+
+Definition of Done verified.
+
+Completed:
+
+- Raspberry Pi OS installed
+- Raspberry Pi booted successfully
+- Wi-Fi configured successfully
+- Network connectivity verified
+- SSH access verified
+- Development environment validated
 
 ---
 
-## Sprint 2 - Core Application Development
+# Sprint 1
 
-### Objectives
+## Objectives
 
-- Create aesd-monitor application
-- Implement TCP server
-- Implement command processing
+- Create aesd-monitor application structure
+- Create build framework
+- Create TCP server module
+- Create system monitoring module
+- Create GPIO module
+- Establish application architecture
+
+## Assigned Issues
+
+| Issue | Description | Status |
+|---------|---------|---------|
+| #3 | TCP Server Prototype | Planned |
+
+## Dependencies and Blockers
+
+### Issue #3
+
+Depends On:
+
+- Issue #1 Repository Setup and Documentation
+- Issue #2 Raspberry Pi Platform Bring-Up
+
+Blocks:
+
+- Future TCP Command Processing
+- Future System Monitoring Integration
+- Future GPIO Hardware Integration
+
+## Definition of Done
+
+### Issue #3
+
+Sprint 1 will be considered complete when:
+
+- applications/aesd-monitor directory exists
+- Makefile exists
+- Source tree exists
+- TCP server module exists
+- Monitoring module exists
+- GPIO module exists
+- Application builds successfully using make
+- Executable runs successfully
+- Source code committed to repository
+- Documentation updated to reflect implementation status
+
+---
+
+# Sprint 2
+
+## Planned Objectives
+
+- Implement TCP client connections
 - Implement INFO command
 - Implement STATUS command
+- Implement command processing framework
 
-### Planned Deliverables
+## Planned Deliverables
 
-- TCP server
-- Client command interface
-- System monitoring framework
+- TCP listener
+- Command parser
+- Network testing
 
 ---
 
-## Sprint 3 - Hardware Integration
+# Sprint 3
 
-### Objectives
+## Planned Objectives
 
 - Implement GPIO subsystem
 - Integrate LED output
 - Integrate push button input
 - Integrate system monitoring
+- Package application for deployment
 
-### Planned Deliverables
+## Planned Deliverables
 
-- LED control
-- Push button monitoring
+- GPIO support
 - Hardware testing
-
----
-
-## Sprint 4 - Deployment and Final Integration
-
-### Objectives
-
-- Create Yocto integration
-- Package application
-- Create systemd service
-- Deploy to Raspberry Pi
-- Perform system testing
-- Complete final documentation
-
-### Planned Deliverables
-
-- Custom Yocto image
+- Yocto integration
 - systemd integration
-- Final demonstration
 
 ---
 
-## Dependencies
+# Current Status
 
-Issue #3 depends on completion of:
+Current Phase:
 
-- Issue #1
-- Issue #2
+**Planning Complete**
 
-Future GPIO integration depends on completion of:
+Next Phase:
 
-- Issue #3
-
----
-
-## Current Status
-
-Current Sprint:
-
-**Sprint 1**
-
-Current Focus:
-
-**TCP Server Prototype (#3)**
+**Sprint 1 - TCP Server Prototype**
 
 Project Status:
 
