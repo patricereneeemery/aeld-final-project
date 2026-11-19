@@ -173,11 +173,11 @@ Testing:
 
 Current Phase:
 
-**Sprint 1**
+**Sprint 2**
 
 Current Focus:
 
-**Issue #4 - TCP Command Processing**
+**GPIO Hardware Integration (#6)**
 
 Project Status:
 
