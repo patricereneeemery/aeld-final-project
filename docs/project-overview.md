@@ -57,9 +57,8 @@ The project demonstrates the integration of Linux system programming, networking
 | TCP Server                                     |
 |------------------------------------------------|
 | System Monitoring                              |
-|   - CPU Usage                                  |
-|   - Memory Usage                               |
-|   - Uptime                                     |
+|   - Memory Availability                        |
+|   - System Uptime                              |
 |------------------------------------------------|
 | GPIO Monitoring and Control                    |
 |------------------------------------------------|
@@ -254,7 +253,7 @@ Project repository:
 
 `https://github.com/patricereneeemery/aeld-final-project\`
 
-This repository will contain:
+This repository contains:
 
 - Project documentation
 - Source code
@@ -318,6 +317,23 @@ The schedule page contains:
 - Dependencies
 - Current project status
 
+## Sprint 1 Accomplishments
+
+Completed implementation work:
+
+- TCP server infrastructure
+- INFO command support
+- STATUS command support
+- Linux uptime monitoring using `/proc/uptime`
+- Linux memory monitoring using `/proc/meminfo`
+- TCP client command processing framework
+
+Completed Sprint 1 Issues:
+
+- #3 TCP Server Prototype
+- #4 TCP Command Processing
+- #5 System Monitoring Integration
+
 ## Current Status
 
 Sprint 1 implementation is complete.
@@ -340,3 +356,18 @@ INFO
 STATUS
  -> UPTIME
  -> MEMAVAILABLE
+```
+
+Upcoming Sprint 2 objectives include:
+
+- GPIO hardware integration
+- LED control
+- Push-button monitoring
+- Additional system monitoring capabilities
+
+Refer to the following documents for implementation details and project tracking:
+
+- `project-proposal.md`
+- `architecture.md`
+- `sprint-plan.md`
+- `schedule.md`
