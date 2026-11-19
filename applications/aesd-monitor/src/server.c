@@ -1,4 +1,5 @@
 #include "server.h"
+#include "monitor.h"
 
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -72,6 +73,23 @@ int server_run(int port)
                  response,
                  strlen(response),
                  0);
+        }
+	else if (strncmp(buffer, "STATUS", 6) == 0)
+	{
+    	    char response[256];
+
+    	    snprintf(
+            response,
+            sizeof(response),
+            "UPTIME=%d\nMEMAVAILABLE=%ld kB\n",
+            get_uptime_seconds(),
+            get_mem_available_kb());
+
+        send(
+            client_fd,
+            response,
+            strlen(response),
+            0);
         }
         else
         {

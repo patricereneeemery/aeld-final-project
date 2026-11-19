@@ -1,11 +1,8 @@
 #ifndef MONITOR_H
-
 #define MONITOR_H
 
+int get_uptime_seconds(void);
 
-
-int monitor_init(void);
-
-
+long get_mem_available_kb(void);
 
 #endif
