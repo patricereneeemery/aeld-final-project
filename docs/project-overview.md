@@ -320,11 +320,23 @@ The schedule page contains:
 
 ## Current Status
 
-The project is currently in Sprint 1.
+Sprint 1 implementation is complete.
 
-Refer to the following documents for implementation details and project tracking:
+Completed functionality includes:
 
-- `project-proposal.md`
-- `architecture.md`
-- `sprint-plan.md`
-- `schedule.md`
+- TCP server framework
+- INFO command processing
+- STATUS command processing
+- System uptime monitoring
+- Memory availability monitoring
+
+Current project functionality:
+
+```text
+INFO
+ -> HOSTNAME
+ -> VERSION
+
+STATUS
+ -> UPTIME
+ -> MEMAVAILABLE
