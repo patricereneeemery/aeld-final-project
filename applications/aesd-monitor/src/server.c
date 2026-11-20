@@ -64,16 +64,24 @@ int server_run(int port)
 
         recv(client_fd, buffer, sizeof(buffer) - 1, 0);
 
-        if (strncmp(buffer, "INFO", 4) == 0)
-        {
-            const char *response =
-                "HOSTNAME=aesd-pi\nVERSION=0.1\n";
+	if (strncmp(buffer, "INFO", 4) == 0)
+	{
+	    char hostname[64];
+	    char response[128];
 
-            send(client_fd,
-                 response,
-                 strlen(response),
-                 0);
-        }
+	    gethostname(hostname, sizeof(hostname));
+
+	    snprintf(
+	        response,
+	        sizeof(response),
+	        "HOSTNAME=%s\nVERSION=0.1\n",
+	        hostname);
+
+	    send(client_fd,
+	         response,
+	         strlen(response),
+	         0);
+	}
 	else if (strncmp(buffer, "STATUS", 6) == 0)
 	{
     	    char response[256];
