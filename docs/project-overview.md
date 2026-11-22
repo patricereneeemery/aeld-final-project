@@ -316,9 +316,18 @@ The project will be considered successful when:
 
 ---
 
-## Final Demonstration Objectives
+### Software Engineering Objectives
 
-The final demonstration will showcase:
+- Utilize ANSI C for Linux operating system interaction
+- Utilize C++17 for application architecture
+- Utilize STL containers where appropriate
+- Implement multithreaded components
+- Demonstrate modular software design
+- Maintain efficient resource utilization
+
+## Final Demo Objectives
+
+The final demo will showcase:
 
 - Raspberry Pi deployment
 - Yocto integration
