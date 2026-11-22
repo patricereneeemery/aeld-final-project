@@ -1,184 +1,115 @@
-# Schedule
+# Project Schedule
 
-## Project Overview
+## Project Timeline
 
-The project is divided into a planning phase followed by three implementation sprints corresponding to the course schedule.
+```mermaid
+timeline
+    title Embedded System Monitoring and Health Management Service
 
----
+    Sprint 1 : Project Planning
+             : Documentation
+             : Raspberry Pi Bring-Up
 
-# Planning Phase
+    Sprint 2 : Project Pivot
+             : TCP Monitoring Server
+             : Monitoring Engine
+             : Logging Framework
+             : Alert Framework
 
-## Objectives
-
-- Create project repository
-- Create project documentation
-- Create project overview
-- Create project schedule
-- Bring up Raspberry Pi 4
-- Verify network connectivity
-- Verify SSH access
-- Define project architecture
-
-## Completed Issues
-
-| Issue | Description | Status |
-|---------|---------|---------|
-| #1 | Repository Setup and Documentation | Complete |
-| #2 | Raspberry Pi Platform Bring-Up | Complete |
-
-## Definition of Done Verification
-
-### Issue #1
-
-Definition of Done verified.
-
-Completed:
-
-- Repository created
-- README created
-- Project Overview page created
-- Schedule page created
-- Repository structure defined
-- Project documentation committed
-
-### Issue #2
-
-Definition of Done verified.
-
-Completed:
-
-- Raspberry Pi OS installed
-- Raspberry Pi booted successfully
-- Wi-Fi configured successfully
-- Network connectivity verified
-- SSH access verified
-- Development environment validated
+    Sprint 3 : REST API
+             : Web Dashboard
+             : Yocto Integration
+             : Testing
+             : Final Demonstration
+```
 
 ---
 
-# Sprint 1
+## Sprint 1
 
-## Objectives
+### Status
 
-- Create aesd-monitor application structure
-- Implement TCP command processing
-- Implement system monitoring framework
-- Establish application architecture
-- Prepare for GPIO integration
+Completed
 
-## Completed Issues
+### Deliverables
 
-| Issue | Description | Status |
-|---------|---------|---------|
-| #3 | TCP Server Prototype | Complete |
-
-## Active Issues
-
-| Issue | Description | Status |
-|---------|---------|---------|
-| #4 | TCP Command Processing | Open |
-| #5 | System Monitoring Integration | Open |
+- Repository Creation
+- Project Planning
+- Documentation
+- Architecture Definition
+- Raspberry Pi Configuration
+- SSH Connectivity
 
 ---
 
-## Issue Dependencies and Blockers
+## Sprint 2
 
-### Issue #4
+### Status
 
-Depends On:
+In Progress
 
-- Issue #3 TCP Server Prototype
+### Deliverables
 
-Blocks:
+#### Issue 14
 
-- Issue #5 System Monitoring Integration
+Project Pivot
 
-### Issue #5
+#### Issue 6
 
-Depends On:
+Core Monitoring Service
 
-- Issue #3 TCP Server Prototype
-- Issue #4 TCP Command Processing
+- CPU Monitoring
+- Memory Monitoring
+- Hostname Monitoring
 
-Blocks:
+#### Issue 7
 
-- Future GPIO Hardware Integration
-- Future Yocto Integration
+TCP Monitoring Server
 
----
+- Socket Communication
+- Client Connections
+- Command Processing
 
-## Definition of Done Verification
+#### Issue 8
 
-### Issue #3
+Extended Metrics
 
-Definition of Done verified.
+- Disk Usage
+- Load Average
+- System Uptime
 
-Completed:
+#### Issue 10
 
-- applications/aesd-monitor directory created
-- Makefile created
-- Source tree created
-- TCP server module created
-- Monitoring module created
-- GPIO module created
-- Application builds successfully
-- Executable runs successfully
-- Source code committed to repository
+Logging and Alerts
 
-Testing:
-
-- Verified successful build using make
-- Verified executable launches successfully
+- Historical Logging
+- Alert Generation
 
 ---
 
-# Sprint 2
+## Sprint 3
 
-## Planned Objectives
+### Planned Deliverables
 
-- Implement GPIO subsystem
-- Integrate LED output
-- Integrate push button input
-- Add hardware monitoring functionality
+#### Issue 9
 
-## Planned Deliverables
+REST API
 
-- GPIO hardware support
-- LED control
-- Push button monitoring
-- Hardware testing
+#### Issue 11
 
----
+Web Dashboard
 
-# Sprint 3
+#### Issue 12
 
-## Planned Objectives
+Yocto Integration
 
-- Create Yocto integration
-- Package application
-- Create systemd service
-- Deploy to Raspberry Pi
-- Complete final validation and testing
+- Package Integration
+- systemd Service
 
-## Planned Deliverables
+#### Issue 13
 
-- Yocto image integration
-- systemd integration
-- Deployment testing
-- Final demonstration
+Final Validation
 
----
-
-# Current Status
-
-Current Phase:
-
-**Sprint 2**
-
-Current Focus:
-
-**GPIO Hardware Integration (#6)**
-
-Project Status:
-
-**On Schedule**
+- Integration Testing
+- Documentation Review
+- Final Demonstration
