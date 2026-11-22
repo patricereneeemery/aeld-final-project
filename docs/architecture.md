@@ -1,111 +1,235 @@
-# System Architecture
+# Software Architecture
 
-## Overview
+## Architecture Overview
 
-The system consists of a Raspberry Pi 4 hosting a monitoring service which accepts client connections over TCP/IP.
+The Embedded System Monitoring and Health Management Service follows a layered software architecture designed to separate networking, monitoring, logging, alerting, and presentation concerns.
+
+The architecture emphasizes Linux systems programming, TCP networking, process monitoring, and embedded software engineering practices while maintaining deployment compatibility with the Yocto Project.
+
+The application primarily uses ANSI C and POSIX APIs for Linux interaction and utilizes C++17 and STL components where appropriate to improve maintainability and software organization.
+
+---
 
 ## High-Level Architecture
 
+```mermaid
+flowchart TD
+
+    Client["TCP Client"]
+
+    Server["TCP Monitoring Server"]
+
+    API["REST API"]
+
+    Dashboard["Web Dashboard"]
+
+    Monitor["Monitoring Engine"]
+
+    Logger["Historical Logger"]
+
+    Alerts["Alert Manager"]
+
+    CPU["CPU Metrics"]
+
+    MEM["Memory Metrics"]
+
+    DISK["Disk Metrics"]
+
+    LOAD["Load Average"]
+
+    UPTIME["System Uptime"]
+
+    HOST["Hostname"]
+
+    Client --> Server
+
+    Dashboard --> API
+
+    API --> Monitor
+
+    Server --> Monitor
+
+    Monitor --> Logger
+
+    Monitor --> Alerts
+
+    Monitor --> CPU
+
+    Monitor --> MEM
+
+    Monitor --> DISK
+
+    Monitor --> LOAD
+
+    Monitor --> UPTIME
+
+    Monitor --> HOST
+```
+
+---
+
+## Major Components
+
+### TCP Monitoring Server
+
+Provides a network-accessible monitoring interface for remote clients.
+
+Responsibilities:
+
+- Accept incoming TCP connections
+- Process monitoring requests
+- Return requested system information
+- Manage client communications
+
+---
+
+### Monitoring Engine
+
+Coordinates all system monitoring activities.
+
+Responsibilities:
+
+- Collect system metrics
+- Schedule monitoring tasks
+- Manage subsystem interactions
+- Distribute collected information
+
+---
+
+### Metrics Collection Layer
+
+Collects operating system health information.
+
+Linux Interfaces:
+
+- `/proc/stat`
+- `/proc/meminfo`
+- `/proc/loadavg`
+- `/proc/uptime`
+- `gethostname()`
+- `statvfs()`
+
+---
+
+### Historical Logger
+
+Stores collected monitoring information.
+
+Responsibilities:
+
+- Historical record retention
+- Event logging
+- Alert logging
+- Performance history
+
+---
+
+### Alert Manager
+
+Evaluates system health conditions.
+
+Responsibilities:
+
+- Threshold evaluation
+- Warning generation
+- Critical alert generation
+- Event notification
+
+---
+
+### REST API
+
+Provides HTTP access to monitoring information.
+
+Example Endpoints:
+
 ```text
-+--------------------+
-|     Client PC      |
-+---------+----------+
-          |
-          | TCP/IP
-          |
-+---------v----------+
-| Raspberry Pi 4     |
-|                    |
-| Monitoring Server  |
-| Thread Manager     |
-| Logging Module     |
-| Systemd Service    |
-+---------+----------+
-          |
-          |
-+---------v----------+
-| Sensor Input       |
-| (or simulation)    |
-+--------------------+
-
-
-# Major Components
-
-## Monitoring Server
-
-### Responsibilities
-
-- Accept client connections
-- Process client requests
-- Return monitoring data to connected clients
-
-The Monitoring Server serves as the primary interface between the Raspberry Pi and remote clients. It listens for incoming TCP connections and provides access to environmental monitoring data.
+/api/system
+/api/cpu
+/api/memory
+/api/disk
+/api/load
+/api/uptime
+```
 
 ---
 
-## Thread Manager
+### Web Dashboard
 
-### Responsibilities
+Provides browser-based monitoring visibility.
 
-- Manage concurrent client connections
-- Create and monitor worker threads
-- Synchronize access to shared resources
-- Prevent data corruption during concurrent operations
+Responsibilities:
 
-The Thread Manager enables multiple clients to interact with the monitoring service simultaneously while maintaining system stability and data integrity.
-
----
-
-## Logging Module
-
-### Responsibilities
-
-- Record server activity
-- Record monitoring data
-- Log client connections and requests
-- Support debugging and operational monitoring
-
-The Logging Module provides persistent records of system operation and assists with troubleshooting and validation of system behavior.
+- Metric visualization
+- Status presentation
+- System overview
+- Alert visibility
 
 ---
 
-## Systemd Service
+## Data Flow
 
-### Responsibilities
+```mermaid
+flowchart LR
 
-- Automatically start the application during system boot
-- Monitor service health
-- Restart the application after failures
-- Support embedded deployment requirements
+    Kernel["Linux Kernel Interfaces"]
 
-The Systemd Service enables the application to operate as a managed Linux service and ensures reliable startup and operation.
+    Collector["Metrics Collector"]
+
+    Logger["Logger"]
+
+    Alerts["Alert Manager"]
+
+    API["REST API"]
+
+    Dashboard["Dashboard"]
+
+    TCP["TCP Server"]
+
+    Kernel --> Collector
+
+    Collector --> Logger
+
+    Collector --> Alerts
+
+    Collector --> API
+
+    Collector --> TCP
+
+    API --> Dashboard
+```
 
 ---
 
-# Hardware Platform
+## Technology Strategy
 
-## Raspberry Pi 4
+### ANSI C
 
-The Raspberry Pi 4 was selected as the hardware platform for this project because it:
+Used for:
 
-- Is supported by the Yocto Project
-- Is widely available and well documented
-- Provides a suitable embedded Linux development environment
-- Has strong community and software support
-- Offers sufficient processing and networking capabilities for the project requirements
+- Linux system interaction
+- POSIX interfaces
+- Metrics collection
+- Resource access
 
----
+### C++17
 
-# Operating System Strategy
+Used for:
 
-## Development Environment
+- Application orchestration
+- Data management
+- Service organization
+- Concurrency management
 
-**Raspberry Pi OS**
+### STL Components
 
-The development and initial testing environment will utilize Raspberry Pi OS to simplify hardware configuration, software development, and debugging activities.
+Potential STL usage:
 
-## Deployment Environment
-
-**Yocto Linux Image**
-
-The final project deliverable will target a custom Yocto-based Linux image, demonstrating embedded Linux build system integration and deployment practices covered in the course.
+```cpp
+std::vector
+std::string
+std::map
+std::thread
+std::mutex
+std::chrono
+```
