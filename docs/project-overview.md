@@ -40,6 +40,132 @@ C language components are utilized for direct operating system interaction inclu
 The resulting system demonstrates both traditional embedded Linux systems programming techniques and modern C++ software engineering practices within a deployable Yocto-based embedded platform.
 
 ---
+## C/C++ Software Architecture Strategy
+
+The Embedded System Monitoring and Device Health Management Service follows a hybrid C and C++ architecture intended to balance the efficiency of traditional embedded Linux development with the maintainability benefits of modern C++.
+
+Rather than implementing the entire application in either language, each language is applied where it provides the greatest benefit.
+
+### ANSI C Responsibilities
+
+ANSI C is utilized for direct Linux operating system interaction and low-level system monitoring functions.
+
+Examples include:
+
+- procfs access
+- POSIX system calls
+- Socket interfaces
+- File I/O
+- Resource collection
+- Linux system integration
+
+Example interfaces include:
+
+```text
+/proc/stat
+/proc/meminfo
+/proc/loadavg
+/proc/uptime
+statvfs()
+gethostname()
+```
+
+The use of C aligns with traditional embedded Linux development practices and provides efficient access to operating system facilities.
+
+---
+
+### C++17 Responsibilities
+
+C++17 is utilized for higher-level application services and software organization.
+
+Examples include:
+
+- Monitoring engine orchestration
+- Service coordination
+- Logging framework
+- Alert management
+- REST API implementation
+- Dashboard integration
+- Thread management
+- Data management
+
+C++17 improves maintainability while preserving performance characteristics appropriate for embedded systems.
+
+---
+
+### STL Utilization
+
+Selected Standard Template Library (STL) components may be incorporated when they provide meaningful architectural advantages.
+
+Potential examples include:
+
+```cpp
+std::vector
+std::string
+std::map
+std::thread
+std::mutex
+std::chrono
+std::unique_ptr
+```
+
+These components support cleaner software design, improved resource management, and safer concurrency handling.
+
+---
+
+### Architectural Philosophy
+
+The project intentionally follows a:
+
+```text
+C for Linux interaction
+
+C++ for application architecture
+```
+
+development model.
+
+This approach combines traditional embedded Linux programming techniques with modern software engineering practices and reflects a common architecture used in contemporary embedded Linux systems.
+
+## Language Layer Architecture
+
+```mermaid
+flowchart TD
+
+    Dashboard["Web Dashboard"]
+
+    API["REST API"]
+
+    Logger["Logger"]
+
+    Alerts["Alert Manager"]
+
+    Monitor["Monitoring Engine"]
+
+    Metrics["Metrics Collector"]
+
+    Linux["Linux Interfaces"]
+
+    Dashboard --> API
+
+    API --> Monitor
+
+    Monitor --> Logger
+
+    Monitor --> Alerts
+
+    Monitor --> Metrics
+
+    Metrics --> Linux
+
+    classDef cpp fill:#bbdefb,stroke:#1976d2,color:#000;
+    classDef c fill:#c8e6c9,stroke:#388e3c,color:#000;
+    classDef kernel fill:#fff9c4,stroke:#f9a825,color:#000;
+
+    class Dashboard,API,Logger,Alerts,Monitor cpp;
+    class Metrics c;
+    class Linux kernel;
+```
 
 ## System Overview
 
