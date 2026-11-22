@@ -2,7 +2,7 @@
 
 ## Project Title
 
-Embedded System Monitoring and Health Management Service
+Embedded System Monitoring and Device Health Management Service
 
 ---
 
