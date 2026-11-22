@@ -9,6 +9,149 @@ The architecture emphasizes Linux systems programming, TCP networking, process m
 The application primarily uses ANSI C and POSIX APIs for Linux interaction and utilizes C++17 and STL components where appropriate to improve maintainability and software organization.
 
 ---
+## C/C++ Software Architecture Strategy
+
+The Embedded System Monitoring and Device Health Management Service follows a hybrid C and C++ architecture that combines traditional embedded Linux systems programming with modern software engineering practices.
+
+The application separates low-level operating system interaction from higher-level service orchestration and management responsibilities.
+
+This architectural approach provides efficient access to Linux kernel interfaces while maintaining modularity, maintainability, and extensibility.
+
+---
+
+### ANSI C Layer
+
+ANSI C is used for direct interaction with Linux operating system facilities and low-level monitoring functions.
+
+Primary responsibilities include:
+
+- procfs access
+- POSIX interfaces
+- Socket interfaces
+- Hostname collection
+- Resource collection
+- Linux system interaction
+
+Key Linux interfaces include:
+
+```text
+/proc/stat
+/proc/meminfo
+/proc/loadavg
+/proc/uptime
+statvfs()
+gethostname()
+```
+
+These components form the foundation of the metrics collection subsystem.
+
+---
+
+### C++17 Service Layer
+
+C++17 is used for higher-level application services and overall system coordination.
+
+Primary responsibilities include:
+
+- Monitoring Engine
+- TCP Server Management
+- Logging Framework
+- Alert Processing
+- REST API Services
+- Dashboard Integration
+- Thread Coordination
+- Application Lifecycle Management
+
+C++ provides improved software organization while preserving performance suitable for embedded Linux environments.
+
+---
+
+### STL Integration
+
+Selected STL components may be incorporated where they provide meaningful architectural benefits.
+
+Potential examples include:
+
+```cpp
+std::vector
+std::string
+std::map
+std::thread
+std::mutex
+std::chrono
+std::unique_ptr
+```
+
+These features improve:
+
+- Resource management
+- Data organization
+- Concurrency handling
+- Software maintainability
+
+---
+
+### Architectural Philosophy
+
+The project follows the principle:
+
+```text
+C for Linux interaction
+
+C++ for service architecture
+```
+
+This approach allows the project to leverage the strengths of both languages while avoiding unnecessary complexity.
+
+The resulting architecture reflects common design patterns used in modern embedded Linux products where low-level hardware and operating system interfaces remain implemented in C while higher-level services and application logic are implemented using modern C++.
+
+## Language Layer Architecture
+
+```mermaid
+flowchart TD
+
+    Dashboard["Web Dashboard"]
+
+    API["REST API"]
+
+    Logger["Historical Logger"]
+
+    Alerts["Alert Manager"]
+
+    Server["TCP Monitoring Server"]
+
+    Monitor["Monitoring Engine"]
+
+    Metrics["C Metrics Collector"]
+
+    Linux["Linux Interfaces"]
+
+    Dashboard --> API
+
+    API --> Monitor
+
+    Server --> Monitor
+
+    Monitor --> Logger
+
+    Monitor --> Alerts
+
+    Monitor --> Metrics
+
+    Metrics --> Linux
+
+    classDef cpp fill:#bbdefb,stroke:#1976d2,color:#000
+
+    classDef c fill:#c8e6c9,stroke:#388e3c,color:#000
+
+    classDef kernel fill:#fff9c4,stroke:#f9a825,color:#000
+
+    class Dashboard,API,Logger,Alerts,Server,Monitor cpp
+
+    class Metrics c
+
+    class Linux kernel
+```
 
 ## High-Level Architecture
 
