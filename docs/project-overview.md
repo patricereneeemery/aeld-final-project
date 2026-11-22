@@ -10,11 +10,11 @@ Embedded System Monitoring and Device Health Management Service
 
 The Embedded System Monitoring and Device Health Management Service is a lightweight embedded Linux application deployed on a Raspberry Pi 4 using the Yocto Project.
 
-The application combines TCP networking and Linux system monitoring to provide real-time visibility into platform health, resource utilization, and operating system status.
+The application combines TCP client/server networking, Linux systems programming, and device health monitoring to provide real-time visibility into platform health, resource utilization, and operating system status.
 
-The monitoring service continuously collects CPU utilization, memory utilization, disk utilization, load average, uptime, and hostname information from Linux operating system interfaces.
+The system continuously collects CPU utilization, memory utilization, disk utilization, load average, uptime, hostname information, and additional operating system metrics through Linux system interfaces.
 
-Collected metrics are made available through multiple interfaces including:
+Collected metrics are made available through multiple software interfaces including:
 
 - TCP Client/Server Communications
 - REST API Services
@@ -22,9 +22,22 @@ Collected metrics are made available through multiple interfaces including:
 - Alert Notifications
 - Web Dashboard Visualization
 
-The project demonstrates practical embedded Linux software engineering techniques including Linux systems programming, socket programming, network communications, service integration, process monitoring, and Yocto deployment.
+The project demonstrates practical embedded Linux software engineering concepts including:
 
-The software primarily utilizes ANSI C and POSIX APIs for low-level Linux interaction while incorporating C++17 and selected STL containers where they improve maintainability, software organization, data management, and concurrency.
+- Linux Systems Programming
+- Socket Programming
+- TCP/IP Networking
+- Multithreaded Application Design
+- Process Monitoring
+- Service Integration
+- Yocto Deployment
+- Device Health Management
+
+The software follows a hybrid development approach utilizing ANSI C and POSIX APIs for low-level Linux system interaction while incorporating modern C++17 language features and selected STL components where they improve software organization, resource management, maintainability, concurrency, and overall system architecture.
+
+C language components are utilized for direct operating system interaction including procfs access, POSIX interfaces, socket operations, and resource collection. C++17 components are utilized for application orchestration, monitoring services, logging, data management, multithreading, and higher-level application logic.
+
+The resulting system demonstrates both traditional embedded Linux systems programming techniques and modern C++ software engineering practices within a deployable Yocto-based embedded platform.
 
 ---
 
