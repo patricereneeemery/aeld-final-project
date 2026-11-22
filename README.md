@@ -1,5 +1,3 @@
-Copy everything below directly into README.md.
-
 AESD Final Project
 Embedded System Monitoring and Health Management Service
 
