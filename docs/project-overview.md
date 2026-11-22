@@ -8,7 +8,7 @@ Embedded System Monitoring and Device Health Management Service
 
 ## Project Summary
 
-The Embedded System Monitoring and Health Management Service is a lightweight embedded Linux application deployed on a Raspberry Pi 4 using the Yocto Project.
+The Embedded System Monitoring and Device Health Management Service is a lightweight embedded Linux application deployed on a Raspberry Pi 4 using the Yocto Project.
 
 The application combines TCP networking and Linux system monitoring to provide real-time visibility into platform health, resource utilization, and operating system status.
 
