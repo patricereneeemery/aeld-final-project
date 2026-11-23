@@ -1,6 +1,6 @@
 CC=gcc
 
-CFLAGS=-Wall -Wextra -Werror -g
+CFLAGS=-Wall -Wextra -Werror -g -pthread
 
 TARGET=aesd-monitor
 
@@ -14,7 +14,7 @@ OBJS=$(SRCS:.c=.o)
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -pthread -o $@ $^
 
 clean:
 	rm -f $(TARGET) $(OBJS)
