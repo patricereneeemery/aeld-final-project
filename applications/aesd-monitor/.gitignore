@@ -1,2 +1,8 @@
-aesd-monitor
+# Build artifacts
 *.o
+
+# Executables
+aesd-monitor
+
+# Runtime logs
+*.log
