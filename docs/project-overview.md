@@ -131,13 +131,14 @@ development model.
 This approach combines traditional embedded Linux programming techniques with modern software engineering practices and reflects a common architecture used in contemporary embedded Linux systems.
 
 ## Language Layer Architecture
-
 ```mermaid
 flowchart TD
 
     Dashboard["Web Dashboard"]
 
     API["REST API"]
+
+    TCP["TCP Monitoring Server"]
 
     Logger["Logger"]
 
@@ -153,6 +154,8 @@ flowchart TD
 
     API --> Monitor
 
+    TCP --> Monitor
+
     Monitor --> Logger
 
     Monitor --> Alerts
@@ -165,10 +168,11 @@ flowchart TD
     classDef c fill:#c8e6c9,stroke:#388e3c,color:#000;
     classDef kernel fill:#fff9c4,stroke:#f9a825,color:#000;
 
-    class Dashboard,API,Logger,Alerts,Monitor cpp;
+    class Dashboard,API,TCP,Logger,Alerts,Monitor cpp;
     class Metrics c;
     class Linux kernel;
 ```
+
 
 ## System Overview
 
@@ -248,30 +252,6 @@ This architectural revision reduces hardware dependency while increasing focus o
 
 ---
 
-## Project Pivot Visualization
-
-```mermaid
-flowchart LR
-
-    Old["GPIO / Breadboard Architecture"]
-
-    New["Monitoring Service Architecture"]
-
-    Old --> New
-
-    New --> TCP["TCP Client Server"]
-
-    New --> Metrics["System Monitoring"]
-
-    New --> Logging["Historical Logging"]
-
-    New --> Alerts["Alert Framework"]
-
-    New --> API["REST API"]
-
-    New --> Dashboard["Web Dashboard"]
-```
-
 ```mermaid
 flowchart LR
 
@@ -300,47 +280,6 @@ flowchart LR
     API --> Monitor
 
     Dashboard --> API
-```
-```mermaid
-flowchart TD
-
-    Dashboard["Web Dashboard"]
-
-    API["REST API"]
-
-    TCP["TCP Monitoring Server"]
-
-    Logger["Logger"]
-
-    Alerts["Alert Manager"]
-
-    Monitor["Monitoring Engine"]
-
-    Metrics["Metrics Collector"]
-
-    Linux["Linux Interfaces"]
-
-    Dashboard --> API
-
-    API --> Monitor
-
-    TCP --> Monitor
-
-    Monitor --> Logger
-
-    Monitor --> Alerts
-
-    Monitor --> Metrics
-
-    Metrics --> Linux
-
-    classDef cpp fill:#bbdefb,stroke:#1976d2,color:#000;
-    classDef c fill:#c8e6c9,stroke:#388e3c,color:#000;
-    classDef kernel fill:#fff9c4,stroke:#f9a825,color:#000;
-
-    class Dashboard,API,TCP,Logger,Alerts,Monitor cpp;
-    class Metrics c;
-    class Linux kernel;
 ```
 
 
@@ -517,7 +456,7 @@ Completed
 
 ### Sprint 2
 
-Current Sprint
+Completed
 
 - Project Pivot
 - TCP Monitoring Server
@@ -529,11 +468,11 @@ Current Sprint
 
 ### Sprint 3
 
-Final Sprint
+Current Sprint
 
 - Network Monitoring and Connectivity Alerts
-- REST API
-- Dashboard
+- REST API Integration
+- Web Dashboard Development
 - Yocto Integration
 - Testing
 - Validation
