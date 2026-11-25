@@ -8,7 +8,10 @@ Embedded System Monitoring and Device Health Management Service
 
 ## Project Summary
 
+
+
 The Embedded System Monitoring and Device Health Management Service is a lightweight embedded Linux application deployed on a Raspberry Pi 4 using the Yocto Project.
+The system continuously collects CPU utilization, memory utilization, disk utilization, load average, uptime, hostname information, network interface status, IP address information, network connectivity status, network traffic statistics, and additional operating system metrics through Linux system interfaces.
 
 The application combines TCP client/server networking, Linux systems programming, and device health monitoring to provide real-time visibility into platform health, resource utilization, and operating system status.
 
@@ -269,9 +272,82 @@ flowchart LR
     New --> Dashboard["Web Dashboard"]
 ```
 
+```mermaid
+flowchart LR
+
+    Client["TCP Client"]
+
+    TCP["TCP Monitoring Server"]
+
+    Monitor["Monitoring Engine"]
+
+    Logger["Historical Logger"]
+
+    Alerts["Alert Framework"]
+
+    API["REST API"]
+
+    Dashboard["Web Dashboard"]
+
+    Client --> TCP
+
+    TCP --> Monitor
+
+    Monitor --> Logger
+
+    Monitor --> Alerts
+
+    API --> Monitor
+
+    Dashboard --> API
+```
+```mermaid
+flowchart TD
+
+    Dashboard["Web Dashboard"]
+
+    API["REST API"]
+
+    TCP["TCP Monitoring Server"]
+
+    Logger["Logger"]
+
+    Alerts["Alert Manager"]
+
+    Monitor["Monitoring Engine"]
+
+    Metrics["Metrics Collector"]
+
+    Linux["Linux Interfaces"]
+
+    Dashboard --> API
+
+    API --> Monitor
+
+    TCP --> Monitor
+
+    Monitor --> Logger
+
+    Monitor --> Alerts
+
+    Monitor --> Metrics
+
+    Metrics --> Linux
+
+    classDef cpp fill:#bbdefb,stroke:#1976d2,color:#000;
+    classDef c fill:#c8e6c9,stroke:#388e3c,color:#000;
+    classDef kernel fill:#fff9c4,stroke:#f9a825,color:#000;
+
+    class Dashboard,API,TCP,Logger,Alerts,Monitor cpp;
+    class Metrics c;
+    class Linux kernel;
+```
+
+
 ---
 
 ## Project Objectives
+The system continuously collects CPU utilization, memory utilization, disk utilization, load average, uptime, hostname information, network interface status, IP address information, network connectivity status, network traffic statistics, and additional operating system metrics through Linux system interfaces.
 
 ### Networking Objectives
 
@@ -288,13 +364,19 @@ flowchart LR
 - Monitor load average
 - Monitor system uptime
 - Monitor hostname information
+- Monitor network interface status
+- Monitor IP address information
+- Monitor network connectivity
+- Monitor network traffic statistics
 
 ### Service Objectives
 
 - Maintain historical records
-- Generate threshold-based alerts
+- Generate threshold-based system alerts
+- Generate threshold-based network alerts
 - Provide REST API access
 - Provide dashboard visualization
+
 
 ### Deployment Objectives
 
@@ -305,6 +387,19 @@ flowchart LR
 ---
 
 ## System Capabilities
+The monitoring engine will continuously collect:
+
+- CPU Utilization
+- Memory Utilization
+- Disk Utilization
+- Load Average
+- System Uptime
+- Hostname Information
+- Network Interface Status
+- IP Address Information
+- Network Connectivity Status
+- RX Traffic Statistics
+- TX Traffic Statistics
 
 ### TCP Monitoring Interface
 
@@ -357,6 +452,25 @@ System information will be exposed through lightweight JSON endpoints.
 A browser-accessible dashboard will display current platform status and operating system health information.
 
 ---
+## Network Monitoring Capabilities
+
+The monitoring engine will be extended during Sprint 3 to collect and evaluate network health information including:
+
+- Network Interface Status
+- IP Address Information
+- Connectivity Status
+- RX Byte Statistics
+- TX Byte Statistics
+
+Network health information will be integrated into:
+
+- Historical Logging
+- Alert Generation
+- REST API Services
+- Dashboard Visualization
+
+This functionality extends the device health management framework beyond host resource monitoring and provides additional visibility into communication subsystem health.
+
 
 ## Expected Deliverables
 
@@ -417,12 +531,14 @@ Current Sprint
 
 Final Sprint
 
+- Network Monitoring and Connectivity Alerts
 - REST API
 - Dashboard
 - Yocto Integration
 - Testing
 - Validation
-- Final Demonstration
+- Final Demo
+
 
 ---
 
