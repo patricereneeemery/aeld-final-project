@@ -376,3 +376,144 @@ std::thread
 std::mutex
 std::chrono
 ```
+# *** Architecture Updates ***
+# Software Architecture
+
+## High Level Architecture
+
+```mermaid
+flowchart LR
+
+    Client["TCP Client"]
+
+    TCP["TCP Monitoring Server"]
+
+    Monitor["Monitoring Engine"]
+
+    Logger["Historical Logger"]
+
+    Alerts["Alert Framework"]
+
+    API["REST API Service"]
+
+    Dashboard["Web Dashboard"]
+
+    Client --> TCP
+
+    TCP --> Monitor
+
+    Monitor --> Logger
+
+    Monitor --> Alerts
+
+    API --> Monitor
+
+    Dashboard --> API
+```
+
+---
+
+## Monitoring Subsystem
+
+The monitoring subsystem is responsible for collecting:
+
+### Host Metrics
+
+- CPU Utilization
+- Memory Utilization
+- Disk Utilization
+- Load Average
+- System Uptime
+- Hostname Information
+
+### Network Metrics
+
+- Interface Status
+- IP Address Information
+- Connectivity Status
+- RX Traffic Statistics
+- TX Traffic Statistics
+
+---
+
+## Logging Subsystem
+
+The logging subsystem records:
+
+- Historical Metrics
+- Alert Events
+- Recovery Events
+
+Files:
+
+```text
+aesd-monitor.log
+aesd-alerts.log
+```
+
+---
+
+## Alert Subsystem
+
+The alert framework evaluates:
+
+### Host Thresholds
+
+- CPU Threshold
+- Memory Threshold
+- Disk Threshold
+
+### Network Events
+
+- Interface Down
+- Connectivity Loss
+- Connectivity Restored
+- IP Address Changes
+
+---
+
+## Communication Layers
+
+### TCP Service
+
+Port:
+
+```text
+9000
+```
+
+Provides:
+
+```text
+GET_CPU
+GET_MEMORY
+GET_DISK
+GET_LOAD
+GET_UPTIME
+GET_STATUS
+GET_NETWORK
+```
+
+### REST API
+
+Port:
+
+```text
+8080
+```
+
+Provides:
+
+```text
+/api/system
+/api/cpu
+/api/memory
+/api/disk
+/api/load
+/api/uptime
+/api/alerts
+```
+
+### Dashboard
+
+Browser-based visualization platform.
