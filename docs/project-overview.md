@@ -8,50 +8,62 @@ Embedded System Monitoring and Device Health Management Service
 
 ## Project Summary
 
-
-
 The Embedded System Monitoring and Device Health Management Service is a lightweight embedded Linux application deployed on a Raspberry Pi 4 using the Yocto Project.
-The system continuously collects CPU utilization, memory utilization, disk utilization, load average, uptime, hostname information, network interface status, IP address information, network connectivity status, network traffic statistics, and additional operating system metrics through Linux system interfaces.
 
-The application combines TCP client/server networking, Linux systems programming, and device health monitoring to provide real-time visibility into platform health, resource utilization, and operating system status.
+The application combines TCP client/server networking, Linux systems programming, multithreaded monitoring services, historical logging, alert generation, REST API services, and dashboard visualization to provide real-time and historical visibility into embedded platform health and operating system status.
 
-The system continuously collects CPU utilization, memory utilization, disk utilization, load average, uptime, hostname information, and additional operating system metrics through Linux system interfaces.
+The monitoring engine continuously collects system and network health information through Linux operating system interfaces.
 
-Collected metrics are made available through multiple software interfaces including:
+Collected information includes:
+
+- CPU Utilization
+- Memory Utilization
+- Disk Utilization
+- Load Average
+- System Uptime
+- Hostname Information
+- Network Interface Status
+- IP Address Information
+- Network Connectivity Status
+- Network Traffic Statistics
+
+Collected metrics are exposed through multiple software interfaces including:
 
 - TCP Client/Server Communications
-- REST API Services
 - Historical Logging
 - Alert Notifications
+- REST API Services
 - Web Dashboard Visualization
 
-The project demonstrates practical embedded Linux software engineering concepts including:
+The resulting platform provides a practical foundation for embedded device health management, monitoring, troubleshooting, validation, and operational awareness.
+
+The project demonstrates advanced embedded Linux software engineering concepts including:
 
 - Linux Systems Programming
+- POSIX APIs
 - Socket Programming
 - TCP/IP Networking
-- Multithreaded Application Design
-- Process Monitoring
+- REST API Design
+- Multithreaded Programming
+- Historical Data Collection
+- Alert Processing
 - Service Integration
-- Yocto Deployment
-- Device Health Management
-
-The software follows a hybrid development approach utilizing ANSI C and POSIX APIs for low-level Linux system interaction while incorporating modern C++17 language features and selected STL components where they improve software organization, resource management, maintainability, concurrency, and overall system architecture.
-
-C language components are utilized for direct operating system interaction including procfs access, POSIX interfaces, socket operations, and resource collection. C++17 components are utilized for application orchestration, monitoring services, logging, data management, multithreading, and higher-level application logic.
-
-The resulting system demonstrates both traditional embedded Linux systems programming techniques and modern C++ software engineering practices within a deployable Yocto-based embedded platform.
+- Yocto-Based Deployment
+- Embedded Device Health Management
 
 ---
-## C/C++ Software Architecture Strategy
 
-The Embedded System Monitoring and Device Health Management Service follows a hybrid C and C++ architecture intended to balance the efficiency of traditional embedded Linux development with the maintainability benefits of modern C++.
+# C/C++ Software Architecture Strategy
 
-Rather than implementing the entire application in either language, each language is applied where it provides the greatest benefit.
+The Embedded System Monitoring and Device Health Management Service follows a hybrid C and C++ architecture intended to balance traditional embedded Linux development practices with modern software engineering techniques.
 
-### ANSI C Responsibilities
+Rather than implementing the entire application in either language, each language is utilized where it provides the greatest benefit.
 
-ANSI C is utilized for direct Linux operating system interaction and low-level system monitoring functions.
+---
+
+## ANSI C Responsibilities
+
+ANSI C is utilized for direct Linux operating system interaction and low-level monitoring functionality.
 
 Examples include:
 
@@ -59,8 +71,8 @@ Examples include:
 - POSIX system calls
 - Socket interfaces
 - File I/O
-- Resource collection
-- Linux system integration
+- Data collection
+- Linux integration
 
 Example interfaces include:
 
@@ -69,36 +81,41 @@ Example interfaces include:
 /proc/meminfo
 /proc/loadavg
 /proc/uptime
+/proc/net/dev
+
 statvfs()
 gethostname()
+getifaddrs()
 ```
 
 The use of C aligns with traditional embedded Linux development practices and provides efficient access to operating system facilities.
 
 ---
 
-### C++17 Responsibilities
+## C++17 Responsibilities
 
 C++17 is utilized for higher-level application services and software organization.
 
 Examples include:
 
 - Monitoring engine orchestration
-- Service coordination
-- Logging framework
+- Service integration
+- Historical logging
 - Alert management
+- Network monitoring orchestration
 - REST API implementation
 - Dashboard integration
 - Thread management
 - Data management
+- Resource coordination
 
 C++17 improves maintainability while preserving performance characteristics appropriate for embedded systems.
 
 ---
 
-### STL Utilization
+## STL Utilization
 
-Selected Standard Template Library (STL) components may be incorporated when they provide meaningful architectural advantages.
+Selected Standard Template Library (STL) components may be utilized where they provide meaningful architectural advantages.
 
 Potential examples include:
 
@@ -112,25 +129,28 @@ std::chrono
 std::unique_ptr
 ```
 
-These components support cleaner software design, improved resource management, and safer concurrency handling.
+These components support safer resource management and improved software organization.
 
 ---
 
-### Architectural Philosophy
+## Architectural Philosophy
 
 The project intentionally follows a:
 
 ```text
-C for Linux interaction
+C for Linux Interaction
 
-C++ for application architecture
+C++ for Application Architecture
 ```
 
 development model.
 
-This approach combines traditional embedded Linux programming techniques with modern software engineering practices and reflects a common architecture used in contemporary embedded Linux systems.
+This approach combines traditional embedded Linux programming techniques with modern software engineering practices.
 
-## Language Layer Architecture
+---
+
+# Language Layer Architecture
+
 ```mermaid
 flowchart TD
 
@@ -173,84 +193,9 @@ flowchart TD
     class Linux kernel;
 ```
 
-
-## System Overview
-
-```mermaid
-flowchart LR
-
-    Client["TCP Client"]
-
-    Server["TCP Monitoring Server"]
-
-    Monitor["Monitoring Engine"]
-
-    Dashboard["Web Dashboard"]
-
-    Client --> Server
-
-    Server --> Monitor
-
-    Monitor --> Dashboard
-```
-
 ---
 
-## Problem Statement
-
-Embedded Linux devices frequently operate unattended and provide limited visibility into processor utilization, memory consumption, storage utilization, and overall platform health.
-
-System administrators and developers require access to performance information in order to support validation, troubleshooting, maintenance, and operational awareness.
-
-Many lightweight embedded systems provide limited monitoring capabilities and often require direct device access to retrieve meaningful status information.
-
-This project addresses these challenges through the development of a network-accessible monitoring service capable of providing both real-time and historical performance visibility.
-
----
-
-## Project Pivot
-
-### Original Architecture
-
-The original project concept focused on GPIO monitoring and control through external breadboard hardware including:
-
-- LEDs
-- Push Buttons
-- Resistors
-- Breadboard Circuitry
-- GPIO Interfaces
-
-The original architecture emphasized hardware interaction and external device control.
-
-### Revised Architecture
-
-During Sprint 2 implementation, practical hardware integration challenges significantly increased project risk and reduced development efficiency.
-
-To improve project success and increase alignment with Advanced Embedded Linux Development learning objectives, the project architecture was revised.
-
-The revised solution maintains:
-
-- Raspberry Pi 4 Platform
-- Yocto Deployment Environment
-- Linux Systems Programming
-- Embedded Networking
-- Service Deployment
-- System Monitoring
-
-while replacing breadboard-dependent functionality with software-focused monitoring capabilities.
-
-The new architecture emphasizes:
-
-- TCP Client/Server Communications
-- Linux System Monitoring
-- Historical Logging
-- Alert Framework
-- REST API Services
-- Web Dashboard Visualization
-
-This architectural revision reduces hardware dependency while increasing focus on operating system interaction, networking, software architecture, service management, and embedded Linux development.
-
----
+# Runtime Service Architecture
 
 ```mermaid
 flowchart LR
@@ -265,7 +210,7 @@ flowchart LR
 
     Alerts["Alert Framework"]
 
-    API["REST API"]
+    API["REST API Service"]
 
     Dashboard["Web Dashboard"]
 
@@ -282,20 +227,109 @@ flowchart LR
     Dashboard --> API
 ```
 
+---
+
+# Problem Statement
+
+Embedded Linux systems frequently operate unattended and provide limited visibility into processor utilization, memory consumption, storage utilization, network status, and overall platform health.
+
+Developers and administrators require access to performance information to support validation, troubleshooting, maintenance, and operational awareness.
+
+Many lightweight embedded platforms provide limited monitoring capabilities and often require direct device access to retrieve meaningful status information.
+
+This project addresses these challenges through the development of a network-accessible monitoring service capable of providing both real-time and historical platform visibility.
 
 ---
 
-## Project Objectives
-The system continuously collects CPU utilization, memory utilization, disk utilization, load average, uptime, hostname information, network interface status, IP address information, network connectivity status, network traffic statistics, and additional operating system metrics through Linux system interfaces.
+# Project Pivot
 
-### Networking Objectives
+## Original Architecture
+
+The original project concept focused on GPIO monitoring and control using breadboard-based external hardware.
+
+Examples included:
+
+- LEDs
+- Push Buttons
+- Resistors
+- Breadboard Circuitry
+- GPIO Interfaces
+
+The original architecture emphasized hardware interaction and external device control.
+
+---
+
+## Revised Architecture
+
+During Sprint 2 implementation, hardware integration complexity significantly increased project risk and reduced development efficiency.
+
+To improve project success and increase alignment with Advanced Embedded Linux Development learning objectives, the project architecture was revised.
+
+The revised architecture maintains:
+
+- Raspberry Pi 4 Platform
+- Yocto Deployment Environment
+- Linux Systems Programming
+- Embedded Networking
+- Service Deployment
+- System Monitoring
+
+while replacing breadboard-dependent functionality with software-driven monitoring capabilities.
+
+The revised architecture emphasizes:
+
+- TCP Client/Server Communications
+- Linux System Monitoring
+- Network Monitoring
+- Historical Logging
+- Alert Framework
+- REST API Services
+- Web Dashboard Visualization
+
+This revision reduces hardware dependency while increasing focus on software architecture, Linux interaction, networking, service development, and embedded systems engineering.
+
+---
+
+# Project Pivot Visualization
+
+```mermaid
+flowchart LR
+
+    Old["GPIO / Breadboard Architecture"]
+
+    New["Monitoring Service Architecture"]
+
+    Old --> New
+
+    New --> TCP["TCP Client Server"]
+
+    New --> Metrics["System Monitoring"]
+
+    New --> Network["Network Monitoring"]
+
+    New --> Logging["Historical Logging"]
+
+    New --> Alerts["Alert Framework"]
+
+    New --> API["REST API"]
+
+    New --> Dashboard["Web Dashboard"]
+```
+
+---
+
+# Project Objectives
+
+## Networking Objectives
 
 - Implement a TCP monitoring server
 - Implement TCP client/server communications
 - Process remote monitoring requests
 - Return requested monitoring information
 
-### Monitoring Objectives
+---
+
+## Monitoring Objectives
 
 - Monitor CPU utilization
 - Monitor memory utilization
@@ -308,16 +342,20 @@ The system continuously collects CPU utilization, memory utilization, disk utili
 - Monitor network connectivity
 - Monitor network traffic statistics
 
-### Service Objectives
+---
+
+## Service Objectives
 
 - Maintain historical records
-- Generate threshold-based system alerts
-- Generate threshold-based network alerts
+- Generate threshold-based alerts
+- Generate network alerts
+- Generate recovery notifications
 - Provide REST API access
 - Provide dashboard visualization
 
+---
 
-### Deployment Objectives
+## Deployment Objectives
 
 - Package application through Yocto
 - Deploy as a systemd service
@@ -325,8 +363,9 @@ The system continuously collects CPU utilization, memory utilization, disk utili
 
 ---
 
-## System Capabilities
-The monitoring engine will continuously collect:
+# System Capabilities
+
+The monitoring engine continuously collects:
 
 - CPU Utilization
 - Memory Utilization
@@ -340,97 +379,129 @@ The monitoring engine will continuously collect:
 - RX Traffic Statistics
 - TX Traffic Statistics
 
-### TCP Monitoring Interface
+---
 
-Remote clients will be able to connect to the monitoring server and request health information.
+## TCP Monitoring Interface
 
-Example requests may include:
+Remote clients may connect to the monitoring server and request monitoring data.
+
+Example requests include:
 
 ```text
 GET_CPU
 GET_MEMORY
 GET_DISK
 GET_LOAD
+GET_UPTIME
 GET_STATUS
 ```
 
-### Operating System Monitoring
+---
 
-The monitoring engine will continuously collect:
+## Historical Logging
+
+The application maintains historical records for:
+
+- Performance Analysis
+- Validation
+- Troubleshooting
+- Operational Review
+- Alert Correlation
+
+---
+
+## Alert Processing
+
+Collected metrics are evaluated against configurable thresholds to generate:
+
+- Informational Alerts
+- Warning Alerts
+- Critical Alerts
+- Recovery Notifications
+
+---
+
+## REST API Services
+
+System information is exposed through lightweight JSON endpoints.
+
+Example endpoints:
+
+```text
+/api/system
+/api/cpu
+/api/memory
+/api/disk
+/api/load
+/api/uptime
+/api/alerts
+```
+
+---
+
+## Dashboard Interface
+
+A browser-accessible dashboard provides visualization of:
 
 - CPU Utilization
 - Memory Utilization
 - Disk Utilization
 - Load Average
-- System Uptime
-- Hostname Information
-
-### Historical Logging
-
-The application will maintain historical records for:
-
-- Performance analysis
-- Validation
-- Troubleshooting
-- Alert review
-
-### Alert Processing
-
-Collected metrics will be evaluated against configurable thresholds to generate:
-
-- Informational Alerts
-- Warning Alerts
-- Critical Alerts
-
-### REST Services
-
-System information will be exposed through lightweight JSON endpoints.
-
-### Dashboard Interface
-
-A browser-accessible dashboard will display current platform status and operating system health information.
+- Uptime
+- Hostname
+- Network Status
+- Active Alerts
 
 ---
-## Network Monitoring Capabilities
 
-The monitoring engine will be extended during Sprint 3 to collect and evaluate network health information including:
+# Network Monitoring Capabilities
 
-- Network Interface Status
+Sprint 3 introduces dedicated network monitoring functionality.
+
+Collected information includes:
+
+- Interface Status
 - IP Address Information
 - Connectivity Status
 - RX Byte Statistics
 - TX Byte Statistics
 
-Network health information will be integrated into:
+Network health information is integrated into:
 
 - Historical Logging
 - Alert Generation
 - REST API Services
 - Dashboard Visualization
 
-This functionality extends the device health management framework beyond host resource monitoring and provides additional visibility into communication subsystem health.
+This functionality extends the project beyond host monitoring and provides visibility into communication subsystem health.
 
+---
 
-## Expected Deliverables
+# Expected Deliverables
 
-### Software Deliverables
+## Software Deliverables
 
 - TCP Monitoring Server
 - Monitoring Engine
+- Network Monitoring Module
 - Metrics Collection Framework
-- Historical Logging Subsystem
+- Historical Logging Framework
 - Alert Framework
 - REST API
 - Web Dashboard
 
-### Deployment Deliverables
+---
+
+## Deployment Deliverables
 
 - Yocto Integration
 - Application Package
 - systemd Service
 - Automated Startup Configuration
 
-### Documentation Deliverables
+---
+
+## Documentation Deliverables
 
 - README
 - Project Overview
@@ -442,9 +513,9 @@ This functionality extends the device health management framework beyond host re
 
 ---
 
-## Sprint Structure
+# Sprint Structure
 
-### Sprint 1
+## Sprint 1
 
 Completed
 
@@ -454,7 +525,9 @@ Completed
 - Raspberry Pi Bring-Up
 - Repository Setup
 
-### Sprint 2
+---
+
+## Sprint 2
 
 Completed
 
@@ -462,33 +535,48 @@ Completed
 - TCP Monitoring Server
 - CPU Monitoring
 - Memory Monitoring
+- Disk Monitoring
 - Hostname Monitoring
-- Logging Framework
+- Historical Logging
 - Alert Framework
-
-### Sprint 3
-
-Current Sprint
-
-- Network Monitoring and Connectivity Alerts
-- REST API Integration
-- Web Dashboard Development
-- Yocto Integration
-- Testing
-- Validation
-- Final Demo
-
 
 ---
 
-## Success Criteria
+## Sprint 3
+
+Current Sprint
+
+### Issue #14
+
+Network Monitoring and Connectivity Alerts
+
+### Issue #10
+
+REST API Integration
+
+### Issue #11
+
+Web Dashboard Development
+
+### Additional Activities
+
+- Yocto Integration
+- Testing
+- Validation
+- Final Demonstration Preparation
+
+---
+
+# Success Criteria
 
 The project will be considered successful when:
 
 - TCP client/server communication operates correctly
 - System metrics are collected accurately
+- Network metrics are collected accurately
 - Historical records are maintained successfully
 - Alert generation functions correctly
+- Recovery notifications function correctly
 - REST API endpoints operate correctly
 - Dashboard displays system information correctly
 - Application deploys through Yocto
@@ -497,35 +585,39 @@ The project will be considered successful when:
 
 ---
 
-### Software Engineering Objectives
+# Software Engineering Objectives
 
 - Utilize ANSI C for Linux operating system interaction
 - Utilize C++17 for application architecture
 - Utilize STL containers where appropriate
-- Implement multithreaded components
+- Implement multithreaded services
 - Demonstrate modular software design
 - Maintain efficient resource utilization
 
-## Final Demo Objectives
+---
 
-The final demo will showcase:
+# Final Demo Objectives
 
-- Raspberry Pi deployment
-- Yocto integration
-- Automatic service startup
-- TCP client/server communication
-- Real-time metric collection
-- Historical logging
-- Alert generation
-- REST API functionality
-- Web dashboard visualization
-- Complete end-to-end system operation
+The final demonstration will showcase:
+
+- Raspberry Pi Deployment
+- Yocto Integration
+- Automatic Service Startup
+- TCP Client/Server Communication
+- Real-Time Metric Collection
+- Network Monitoring
+- Historical Logging
+- Alert Generation
+- Recovery Detection
+- REST API Functionality
+- Web Dashboard Visualization
+- Complete End-to-End System Operation
 
 ---
 
-## Student
+# Student
 
-### Patrice Renee Emery
+## Patrice Renee Emery
 
 Responsibilities:
 
