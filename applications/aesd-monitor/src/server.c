@@ -1,5 +1,6 @@
 #include "server.h"
 #include "monitor.h"
+#include "network.h"
 
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -186,6 +187,64 @@ void *client_handler(void *arg)
                  strlen(response),
                  0);
         }
+/* */
+	else if (strncmp(buffer,
+                 "NETWORK",
+                 7) == 0)
+	{
+    	char wlan_status[32];
+    	char wlan_ip[64];
+
+    	char eth_status[32];
+    	char eth_ip[64];
+
+    	char response[512];
+
+    	get_interface_status(
+        "wlan0",
+        wlan_status,
+        sizeof(wlan_status));
+
+    	get_ip_address(
+        "wlan0",
+        wlan_ip,
+        sizeof(wlan_ip));
+
+    	get_interface_status(
+        "eth0",
+        eth_status,
+        sizeof(eth_status));
+
+    	get_ip_address(
+        "eth0",
+        eth_ip,
+        sizeof(eth_ip));
+
+    	snprintf(response,
+             sizeof(response),
+             "WLAN0_STATUS=%s\n"
+             "WLAN0_IP=%s\n"
+             "ETH0_STATUS=%s\n"
+             "ETH0_IP=%s\n"
+             "WLAN0_RX=%llu\n"
+             "WLAN0_TX=%llu\n"
+             "ETH0_RX=%llu\n"
+             "ETH0_TX=%llu\n",
+             wlan_status,
+             wlan_ip,
+             eth_status,
+             eth_ip,
+             get_rx_bytes("wlan0"),
+             get_tx_bytes("wlan0"),
+             get_rx_bytes("eth0"),
+             get_tx_bytes("eth0"));
+
+    	
+	send(client_fd,
+         response,
+         strlen(response),
+         0);
+	}
         else
         {
             const char *response =

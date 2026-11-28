@@ -1,5 +1,6 @@
 #include "logger.h"
 #include "monitor.h"
+#include "network.h"
 
 #include <stdio.h>
 #include <time.h>
@@ -18,6 +19,12 @@ int log_metrics(void)
 
     char hostname[64];
 
+    char wlan_status[32];
+    char wlan_ip[64];
+
+    char eth_status[32];
+    char eth_ip[64];
+
     current_time = time(NULL);
 
     time_info = localtime(&current_time);
@@ -35,6 +42,26 @@ int log_metrics(void)
                  "UNKNOWN");
     }
 
+    get_interface_status(
+        "wlan0",
+        wlan_status,
+        sizeof(wlan_status));
+
+    get_ip_address(
+        "wlan0",
+        wlan_ip,
+        sizeof(wlan_ip));
+
+    get_interface_status(
+        "eth0",
+        eth_status,
+        sizeof(eth_status));
+
+    get_ip_address(
+        "eth0",
+        eth_ip,
+        sizeof(eth_ip));
+
     fp = fopen(LOGFILE, "a");
 
     if (fp == NULL)
@@ -50,14 +77,30 @@ int log_metrics(void)
         "MEMORY=%.2f "
         "DISK=%.2f "
         "LOAD=%.2f "
-        "UPTIME=%d\n",
+        "UPTIME=%d "
+        "WLAN0_STATUS=%s "
+        "WLAN0_IP=%s "
+        "WLAN0_RX=%llu "
+        "WLAN0_TX=%llu "
+        "ETH0_STATUS=%s "
+        "ETH0_IP=%s "
+        "ETH0_RX=%llu "
+        "ETH0_TX=%llu\n",
         timestamp,
         hostname,
         get_cpu_usage(),
         get_memory_usage_percent(),
         get_disk_usage_percent(),
         get_load_average(),
-        get_uptime_seconds());
+        get_uptime_seconds(),
+        wlan_status,
+        wlan_ip,
+        get_rx_bytes("wlan0"),
+        get_tx_bytes("wlan0"),
+        eth_status,
+        eth_ip,
+        get_rx_bytes("eth0"),
+        get_tx_bytes("eth0"));
 
     fclose(fp);
 

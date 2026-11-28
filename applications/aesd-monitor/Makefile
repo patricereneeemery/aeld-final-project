@@ -10,7 +10,10 @@ SRCS=src/main.c \
      src/gpio.c \
      src/logger.c \
      src/alerts.c \
-     src/monitor_thread.c
+     src/monitor_thread.c \
+     src/network.c \
+     src/rest_api.c
+
 
 OBJS=$(SRCS:.c=.o)
 

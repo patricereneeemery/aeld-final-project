@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Embedded Device Health Dashboard</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Embedded Device Health Dashboard</h1>
+    <p>Embedded System Monitoring and Device Health Management Service</p>
+</header>
+
+<main>
+
+    <section class="card">
+
+        <h2>System Metrics</h2>
+
+        <div class="metrics-grid">
+
+            <div>Hostname</div>
+            <div id="hostname">---</div>
+
+            <div>CPU (%)</div>
+            <div id="cpu">---</div>
+
+            <div>Memory (%)</div>
+            <div id="memory">---</div>
+
+            <div>Disk (%)</div>
+            <div id="disk">---</div>
+
+            <div>Load</div>
+            <div id="load">---</div>
+
+            <div>Uptime (sec)</div>
+            <div id="uptime">---</div>
+
+        </div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>Network Status</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Interface</th>
+                    <th>Status</th>
+                    <th>IP Address</th>
+                    <th>RX Bytes</th>
+                    <th>TX Bytes</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>wlan0</td>
+                    <td id="wlan-status">---</td>
+                    <td id="wlan-ip">---</td>
+                    <td id="wlan-rx">---</td>
+                    <td id="wlan-tx">---</td>
+                </tr>
+
+                <tr>
+                    <td>eth0</td>
+                    <td id="eth-status">---</td>
+                    <td id="eth-ip">---</td>
+                    <td id="eth-rx">---</td>
+                    <td id="eth-tx">---</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <section class="card">
+
+        <div class="alerts-header">
+
+            <h2>Alert History</h2>
+
+            <select id="severity-filter">
+                <option value="ALL">All</option>
+                <option value="INFO">Info</option>
+                <option value="WARNING">Warning</option>
+                <option value="CRITICAL">Critical</option>
+            </select>
+
+        </div>
+
+        <ul id="alert-list"></ul>
+
+    </section>
+
+</main>
+
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>

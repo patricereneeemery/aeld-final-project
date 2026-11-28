@@ -7,4 +7,8 @@
 
 int check_alerts(void);
 
+int cpu_alert_is_active(void);
+int memory_alert_is_active(void);
+int disk_alert_is_active(void);
+
 #endif

@@ -156,3 +156,18 @@ int check_alerts(void)
 
     return 0;
 }
+
+int cpu_alert_is_active(void)
+{
+    return cpu_alert_active;
+}
+
+int memory_alert_is_active(void)
+{
+    return memory_alert_active;
+}
+
+int disk_alert_is_active(void)
+{
+    return disk_alert_active;
+}
