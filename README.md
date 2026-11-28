@@ -69,6 +69,7 @@ Project documentation is maintained in the `docs` directory.
 - `docs/design-document.md`
 - `docs/requirements.md`
 - `docs/project-schedule.md`
+- `docs/Dashboard.png`
 
 ---
 
@@ -142,6 +143,21 @@ flowchart TD
 ```
 
 ---
+## Dashboard
+
+The dashboard provides real-time monitoring of:
+
+- CPU Utilization
+- Memory Utilization
+- Disk Utilization
+- System Load
+- Uptime
+- Network Status
+- Alert History
+
+### Dashboard Screenshot
+
+![Embedded Device Health Dashboard](docs/Dashboard.png)
 
 ## Project Roadmap
 
